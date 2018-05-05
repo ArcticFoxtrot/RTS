@@ -8,6 +8,7 @@ public class EditorCubeGridSnap: MonoBehaviour {
 	[SerializeField] [Range(1f, 20f)] float sizeOfGrid = 10f;
 
 	private TextMesh labelMesh;
+	private string cubeCoordinates;
 
 	//Awake is called when played
 	//Update is called when editing
@@ -25,6 +26,8 @@ public class EditorCubeGridSnap: MonoBehaviour {
 
 		transform.position = new Vector3(snapPos.x, 0f, snapPos.z);
 
-		labelMesh.text = snapPos.x /sizeOfGrid + "," + snapPos.z / sizeOfGrid;
+		cubeCoordinates = snapPos.x / sizeOfGrid + "," + snapPos.z / sizeOfGrid;
+		labelMesh.text = cubeCoordinates;
+		gameObject.name = "Cube " + cubeCoordinates;
 		}
 }
