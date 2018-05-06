@@ -5,11 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Waypoint))]
 public class EditorCubeGridSnap: MonoBehaviour {
 
-	//Range restricts values in inspector, SizeOfGrid related to the size of the cube that needs to be snapped
-
+	[SerializeField] Waypoint startPoint;
+	[SerializeField] Waypoint endPoint;
 
 	private TextMesh labelMesh;
-	private string cubeCoordinates;
 	private Vector3 gridPosition;
 	private Waypoint cubeWaypoint;
 	private int sizeOfGrid;
@@ -21,8 +20,8 @@ public class EditorCubeGridSnap: MonoBehaviour {
 	void Awake () {
 		labelMesh = GetComponentInChildren<TextMesh>();
 		cubeWaypoint = GetComponent<Waypoint>();
-		print(cubeWaypoint);
 		sizeOfGrid = cubeWaypoint.GetGridSize();
+	
 		
 	}
 	
@@ -39,7 +38,7 @@ public class EditorCubeGridSnap: MonoBehaviour {
 		}
 
 	private void UpdateLabel() {
-		cubeCoordinates = gridPosition.x / sizeOfGrid + "," + gridPosition.z / sizeOfGrid;
+		string cubeCoordinates = cubeWaypoint.GetGridPos().x / sizeOfGrid + "," + cubeWaypoint.GetGridPos().y / sizeOfGrid;
 		labelMesh.text = cubeCoordinates;
 		gameObject.name = "Cube " + cubeCoordinates;
 		}

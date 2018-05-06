@@ -17,7 +17,7 @@ public class Waypoint : MonoBehaviour {
 	void Update () {
 		}
 
-	public Vector2 GetGridPos() {
+	public Vector2Int GetGridPos() {
 		return new Vector2Int(
 		Mathf.RoundToInt(transform.position.x / sizeOfGrid) * sizeOfGrid,
 		Mathf.RoundToInt(transform.position.z / sizeOfGrid) * sizeOfGrid);
@@ -25,6 +25,12 @@ public class Waypoint : MonoBehaviour {
 
 	public int GetGridSize() {
 		return sizeOfGrid;
+		}
+
+	public void SetTopColor(Color color) {
+		//changes the color of the waypoint cube to sign start, goal and route
+		MeshRenderer topFaceMeshRenderer = transform.Find("TopFace").GetComponent<MeshRenderer>();
+		topFaceMeshRenderer.material.color = color;
 		}
 
 }
