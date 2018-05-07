@@ -32,13 +32,13 @@ public class EditorCubeGridSnap: MonoBehaviour {
 		}
 
 	private void SnapCubeToGrid() {
-		gridPosition.x = cubeWaypoint.GetGridPos().x;
-		gridPosition.z = cubeWaypoint.GetGridPos().y;
+		gridPosition.x = cubeWaypoint.GetGridPos().x * sizeOfGrid;
+		gridPosition.z = cubeWaypoint.GetGridPos().y * sizeOfGrid;
 		transform.position = new Vector3(gridPosition.x, 0f, gridPosition.z);
 		}
 
 	private void UpdateLabel() {
-		string cubeCoordinates = cubeWaypoint.GetGridPos().x / sizeOfGrid + "," + cubeWaypoint.GetGridPos().y / sizeOfGrid;
+		string cubeCoordinates = cubeWaypoint.GetGridPos().x + "," + cubeWaypoint.GetGridPos().y;
 		labelMesh.text = cubeCoordinates;
 		gameObject.name = "Cube " + cubeCoordinates;
 		}

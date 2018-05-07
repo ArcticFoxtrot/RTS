@@ -7,6 +7,17 @@ public class Pathfinder : MonoBehaviour {
 
 	Dictionary<Vector2Int, Waypoint> cubeGrid = new Dictionary<Vector2Int, Waypoint>();
 
+	Vector2Int[] directions = {
+		Vector2Int.up,
+		new Vector2Int (1,1), // up right
+		Vector2Int.right,
+		new Vector2Int (1,-1), //down right
+		Vector2Int.down,
+		new Vector2Int (-1,-1), //down left
+		Vector2Int.left,
+		new Vector2Int(-1,1) //up left
+	};
+
 	[SerializeField] Waypoint startPoint;
 	[SerializeField] Waypoint endPoint;
 
@@ -14,7 +25,18 @@ public class Pathfinder : MonoBehaviour {
 	void Start () {
 		LoadCubes();
 		ColorStartAndEndPoints();
+		ExploreNext();
+		}
 
+	private void ExploreNext() {
+		foreach (Vector2Int direction in directions) {
+			Vector2Int pathfinderCoordinates = startPoint.GetGridPos() + direction;
+			try {
+				cubeGrid[pathfinderCoordinates].SetTopColor(Color.cyan);
+				} catch {
+				// do nothing
+				}
+				}
 		}
 
 	private void ColorStartAndEndPoints() {
