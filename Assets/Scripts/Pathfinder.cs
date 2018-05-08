@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour {
 
 	Dictionary<Vector2Int, Waypoint> cubeGrid = new Dictionary<Vector2Int, Waypoint>();
+	Queue<Waypoint> waypointQueue = new Queue<Waypoint>();
 
 	Vector2Int[] directions = {
 		Vector2Int.up,
@@ -21,11 +22,32 @@ public class Pathfinder : MonoBehaviour {
 	[SerializeField] Waypoint startPoint;
 	[SerializeField] Waypoint endPoint;
 
+	private bool isSearching = true;
+
 	// Use this for initialization
 	void Start () {
 		LoadCubes();
 		ColorStartAndEndPoints();
-		ExploreNext();
+		//ExploreNext();
+		PathFind();
+		}
+
+	private void PathFind() {
+		waypointQueue.Enqueue(startPoint);
+		while (waypointQueue.Count > 0) {
+			Waypoint searchPoint = waypointQueue.Dequeue();
+			StopIfEndFound(searchPoint);
+			if (!isSearching) {
+				break;
+				}
+			}
+		}
+
+	private void StopIfEndFound(Waypoint searchPoint) {
+		if (searchPoint == endPoint) {
+			print("Searchpoint and endpoint are equal, stopping search");
+			isSearching = false;
+			}
 		}
 
 	private void ExploreNext() {
