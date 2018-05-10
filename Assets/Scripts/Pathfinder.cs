@@ -23,6 +23,7 @@ public class Pathfinder : MonoBehaviour {
 	[SerializeField] Waypoint endPoint;
 
 	private bool isSearching = true;
+	private Waypoint searchPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -34,16 +35,16 @@ public class Pathfinder : MonoBehaviour {
 
 	private void PathFind() {
 		waypointQueue.Enqueue(startPoint);
-		while (waypointQueue.Count > 0) {
-			Waypoint searchPoint = waypointQueue.Dequeue();
-			StopIfEndFound(searchPoint);
-			if (!isSearching) {
-				break;
-				}
+		while (waypointQueue.Count > 0 && isSearching) {
+			searchPoint = waypointQueue.Dequeue();
+			searchPoint.isExplored = true;
+			StopIfEndFound();
+			ExploreNext();
+			//explore next waypoints
 			}
 		}
 
-	private void StopIfEndFound(Waypoint searchPoint) {
+	private void StopIfEndFound() {
 		if (searchPoint == endPoint) {
 			print("Searchpoint and endpoint are equal, stopping search");
 			isSearching = false;
@@ -51,18 +52,28 @@ public class Pathfinder : MonoBehaviour {
 		}
 
 	private void ExploreNext() {
+		if (!isSearching) { return; }
 		foreach (Vector2Int direction in directions) {
-			Vector2Int pathfinderCoordinates = startPoint.GetGridPos() + direction;
+			Vector2Int pathfinderCoordinates = searchPoint.GetGridPos() + direction;
 			try {
-				cubeGrid[pathfinderCoordinates].SetTopColor(Color.cyan);
+				QueueNextWaypoint(pathfinderCoordinates);
 				} catch {
 				// do nothing
 				}
 				}
 		}
 
+	private void QueueNextWaypoint(Vector2Int pathfinderCoordinates) {
+		Waypoint nextToExplore = cubeGrid[pathfinderCoordinates];
+		if (nextToExplore.isExplored == false && !waypointQueue.Contains(nextToExplore)) {
+			waypointQueue.Enqueue(nextToExplore);
+			print("queueing " + nextToExplore.name);
+			nextToExplore.foundFrom = searchPoint;
+			}
+		}
+
 	private void ColorStartAndEndPoints() {
-		//after all waypoints have been listed, separate starting and ending for pathfinder
+		//after all waypoints have been listed, separate start and ending for pathfinder
 		startPoint.SetTopColor(Color.green);
 		endPoint.SetTopColor(Color.red);
 		}

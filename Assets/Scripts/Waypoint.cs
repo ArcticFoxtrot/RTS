@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Waypoint : MonoBehaviour {
-
+	//data class
+	[SerializeField] Color exploredFlagColor = Color.cyan;
+	public bool isExplored = false; //set from pathfinder.cs
+	public Waypoint foundFrom;
 	const int sizeOfGrid = 10;
 	//waypoint needs to know it's own position -> calculate position on grid in waypoint script 
 
@@ -15,6 +18,9 @@ public class Waypoint : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (isExplored) {
+			SetTopColor(exploredFlagColor);
+			}
 		}
 
 	public Vector2Int GetGridPos() {
