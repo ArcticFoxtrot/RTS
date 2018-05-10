@@ -22,18 +22,35 @@ public class Pathfinder : MonoBehaviour {
 	[SerializeField] Waypoint startPoint;
 	[SerializeField] Waypoint endPoint;
 
+
+	private List<Waypoint> path = new List<Waypoint>();
 	private bool isSearching = true;
 	private Waypoint searchPoint;
 
 	// Use this for initialization
-	void Start () {
+
+	public List<Waypoint> GetPath() {
 		LoadCubes();
 		ColorStartAndEndPoints();
-		//ExploreNext();
-		PathFind();
+		BreadthFirstSearch();
+		CreatePath();
+		return path;
 		}
 
-	private void PathFind() {
+	private void CreatePath() {
+		path.Add(endPoint);
+		Waypoint breadCrumb = endPoint.foundFrom;
+		while(breadCrumb != startPoint) {
+			//add intermediate waypoints
+			path.Add(breadCrumb);
+			breadCrumb = breadCrumb.foundFrom;
+			}
+		path.Add(startPoint);
+		path.Reverse();
+		// add startpoint and reverse list
+		}
+
+	private void BreadthFirstSearch() {
 		waypointQueue.Enqueue(startPoint);
 		while (waypointQueue.Count > 0 && isSearching) {
 			searchPoint = waypointQueue.Dequeue();
@@ -55,9 +72,9 @@ public class Pathfinder : MonoBehaviour {
 		if (!isSearching) { return; }
 		foreach (Vector2Int direction in directions) {
 			Vector2Int pathfinderCoordinates = searchPoint.GetGridPos() + direction;
-			try {
+			if(cubeGrid.ContainsKey(pathfinderCoordinates)) {
 				QueueNextWaypoint(pathfinderCoordinates);
-				} catch {
+				} else {
 				// do nothing
 				}
 				}
