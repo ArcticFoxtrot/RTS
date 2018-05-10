@@ -19,7 +19,7 @@ public class Waypoint : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isExplored) {
-			SetTopColor(exploredFlagColor);
+			//SetTopColor(exploredFlagColor);
 			}
 		}
 
@@ -33,10 +33,13 @@ public class Waypoint : MonoBehaviour {
 		return sizeOfGrid;
 		}
 
-	public void SetTopColor(Color color) {
-		//changes the color of the waypoint cube to sign start, goal and route
-		MeshRenderer topFaceMeshRenderer = transform.Find("TopFace").GetComponent<MeshRenderer>();
-		topFaceMeshRenderer.material.color = color;
-		}
+	//public void SetTopColor(Color color) {
+	//	//changes the color of the waypoint cube to sign start, goal and route
+
+	//	MeshRenderer topFaceMeshRenderer = transform.Find("TopFace").GetComponent<MeshRenderer>();
+	//	if (topFaceMeshRenderer) {
+	//		topFaceMeshRenderer.material.color = color;
+	//		}
+	//	}
 
 }

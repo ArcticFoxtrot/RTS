@@ -31,7 +31,7 @@ public class Pathfinder : MonoBehaviour {
 
 	public List<Waypoint> GetPath() {
 		LoadCubes();
-		ColorStartAndEndPoints();
+		//ColorStartAndEndPoints();
 		BreadthFirstSearch();
 		CreatePath();
 		return path;
@@ -89,11 +89,11 @@ public class Pathfinder : MonoBehaviour {
 			}
 		}
 
-	private void ColorStartAndEndPoints() {
-		//after all waypoints have been listed, separate start and ending for pathfinder
-		startPoint.SetTopColor(Color.green);
-		endPoint.SetTopColor(Color.red);
-		}
+	//private void ColorStartAndEndPoints() {
+	//	//after all waypoints have been listed, separate start and ending for pathfinder
+	//	startPoint.SetTopColor(Color.green);
+	//	endPoint.SetTopColor(Color.red);
+	//	}
 
 	private void LoadCubes() {
 		Waypoint[] waypoints = FindObjectsOfType<Waypoint>();
@@ -104,7 +104,7 @@ public class Pathfinder : MonoBehaviour {
 			if (isOverlapping == false) {
 				cubeGrid.Add(waypoint.GetGridPos(), waypoint);
 				if (waypoint != startPoint || waypoint != endPoint) {
-					waypoint.SetTopColor(Color.clear);
+					//waypoint.SetTopColor(Color.clear);
 					}
 				} else if (isOverlapping) {
 				Debug.LogWarning(waypoint.name + " is overlapping with another waypoint");
