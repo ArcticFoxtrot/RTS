@@ -84,7 +84,7 @@ public class Pathfinder : MonoBehaviour {
 		Waypoint nextToExplore = cubeGrid[pathfinderCoordinates];
 		if (nextToExplore.isExplored == false && !waypointQueue.Contains(nextToExplore)) {
 			waypointQueue.Enqueue(nextToExplore);
-			print("queueing " + nextToExplore.name);
+			//print("queueing " + nextToExplore.name);
 			nextToExplore.foundFrom = searchPoint;
 			}
 		}

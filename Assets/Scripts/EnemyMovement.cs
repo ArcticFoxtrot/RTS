@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour {
 			print("Visiting waypoint: " + waypoint.name);
 			// repeat after time
 			transform.position = waypoint.transform.position;
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(2f);
 			}
 		print("Patrol ends");
 		}
