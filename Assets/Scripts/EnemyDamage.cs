@@ -7,6 +7,7 @@ public class EnemyDamage : MonoBehaviour {
 
 	[SerializeField] Collider enemyCollisionMesh;
 	[SerializeField] int hitPoints = 10;
+	
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class EnemyDamage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+	
 	}
 
 	private void OnParticleCollision(GameObject other) {

@@ -198,4 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPan: {fileID: 4526594854301058}
-  targetEnemy: {fileID: 0}
+  targetEnemy: {fileID: 4664583746189492, guid: 99667ba82381d634e89eee982035e9fc,
+    type: 2}
+  firingDistance: 4
