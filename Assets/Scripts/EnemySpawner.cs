@@ -9,15 +9,18 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//start a coroutine
-	}
+		StartCoroutine(SpawnEnemy());
+			}
 	
 	// Update is called once per frame
 
 
 	IEnumerator SpawnEnemy() {
-		// forever
+		while (true) {
+
 			// spawn
-			// wait
+			print("Spawning!");
+			yield return new WaitForSeconds(secondsBetweenSpawns);
+			}
 		}
 }
