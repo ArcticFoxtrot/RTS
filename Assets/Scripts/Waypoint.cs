@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour {
 	//data class
-	[SerializeField] Color exploredFlagColor = Color.cyan;
 	public bool isExplored = false; //set from pathfinder.cs
 	public Waypoint foundFrom;
 	const int sizeOfGrid = 10;
 	public bool isPlaceable = true;
+	[SerializeField] Tower towerPrefab;
 	//waypoint needs to know it's own position -> calculate position on grid in waypoint script 
 
 	Vector2Int gridPos;
@@ -44,7 +44,12 @@ public class Waypoint : MonoBehaviour {
 	//	}
 	private void OnMouseOver() {
 		if (Input.GetMouseButtonDown(0) && isPlaceable == true ) {
-			Debug.Log("Clicked block: " + gameObject.name);
+			SpawnTower();
+			isPlaceable = false;
 			}
+		}
+
+	private void SpawnTower() {
+		Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity);
 		}
 	}

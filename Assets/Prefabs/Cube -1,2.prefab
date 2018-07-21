@@ -85,6 +85,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 37b99336461214a40b89b24408e235bb, type: 2}
   m_StaticBatchInfo:
@@ -137,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257e3bb7b1ef79b4fb86b7cd3da7b8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exploredFlagColor: {r: 0, g: 1, b: 1, a: 1}
   isExplored: 1
   foundFrom: {fileID: 0}
+  isPlaceable: 1
+  towerPrefab: {fileID: 114862364028596428, guid: 44293823804a356418d212155a4b40f2,
+    type: 2}
