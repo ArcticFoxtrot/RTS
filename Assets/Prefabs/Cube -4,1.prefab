@@ -316,5 +316,5 @@ MonoBehaviour:
   isExplored: 0
   foundFrom: {fileID: 0}
   isPlaceable: 1
-  towerPrefab: {fileID: 114862364028596428, guid: 44293823804a356418d212155a4b40f2,
+  towerPrefab: {fileID: 114661902912452210, guid: 44293823804a356418d212155a4b40f2,
     type: 2}

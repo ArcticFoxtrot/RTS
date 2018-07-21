@@ -7,6 +7,8 @@ public class EnemyDamage : MonoBehaviour {
 
 	[SerializeField] Collider enemyCollisionMesh;
 	[SerializeField] int hitPoints = 10;
+	[SerializeField] ParticleSystem hitParticleSystem;
+	[SerializeField] ParticleSystem deathParticleSystem;
 	
 
 	// Use this for initialization
@@ -20,7 +22,7 @@ public class EnemyDamage : MonoBehaviour {
 	}
 
 	private void OnParticleCollision(GameObject other) {
-		print("I'm hit!");
+		//print("I'm hit!");
 		ProcessHit();
 		if (hitPoints <= 0) {
 			KillEnemy();
@@ -30,10 +32,12 @@ public class EnemyDamage : MonoBehaviour {
 
 	private void ProcessHit() {
 		hitPoints = hitPoints - 1;
-
+		hitParticleSystem.Play();
 		}
 
 	private void KillEnemy() {
+		ParticleSystem deathFX = Instantiate(deathParticleSystem, transform.position, Quaternion.identity);
+		deathFX.Play();
 		Destroy(gameObject);
 		}
 

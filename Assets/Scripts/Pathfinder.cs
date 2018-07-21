@@ -50,8 +50,9 @@ public class Pathfinder : MonoBehaviour {
 		Waypoint breadCrumb = endPoint.foundFrom;
 		while(breadCrumb != startPoint) {
 			//add intermediate waypoints
-			breadCrumb = breadCrumb.foundFrom;
 			SetAsPath(breadCrumb);
+			breadCrumb = breadCrumb.foundFrom;
+	
 
 			
 			}
