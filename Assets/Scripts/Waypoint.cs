@@ -41,5 +41,7 @@ public class Waypoint : MonoBehaviour {
 	//		topFaceMeshRenderer.material.color = color;
 	//		}
 	//	}
-
-}
+	private void OnMouseOver() {
+		Debug.Log("Mouse over block: " + gameObject.name);
+		}
+	}
