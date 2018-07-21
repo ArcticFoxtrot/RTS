@@ -45,16 +45,24 @@ public class Pathfinder : MonoBehaviour {
 		}
 
 	private void CreatePath() {
-		path.Add(endPoint);
+
+		SetAsPath(endPoint);
 		Waypoint breadCrumb = endPoint.foundFrom;
 		while(breadCrumb != startPoint) {
 			//add intermediate waypoints
-			path.Add(breadCrumb);
 			breadCrumb = breadCrumb.foundFrom;
+			SetAsPath(breadCrumb);
+
+			
 			}
-		path.Add(startPoint);
+		SetAsPath(startPoint);
 		path.Reverse();
 		// add startpoint and reverse list
+		}
+
+	private void SetAsPath(Waypoint waypoint) {
+		path.Add(waypoint);
+		waypoint.isPlaceable = false;
 		}
 
 	private void BreadthFirstSearch() {
@@ -62,6 +70,7 @@ public class Pathfinder : MonoBehaviour {
 		while (waypointQueue.Count > 0 && isSearching) {
 			searchPoint = waypointQueue.Dequeue();
 			searchPoint.isExplored = true;
+			//searchPoint.isPlaceable = false;
 			StopIfEndFound();
 			ExploreNext();
 			//explore next waypoints

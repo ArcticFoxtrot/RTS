@@ -8,6 +8,7 @@ public class Waypoint : MonoBehaviour {
 	public bool isExplored = false; //set from pathfinder.cs
 	public Waypoint foundFrom;
 	const int sizeOfGrid = 10;
+	public bool isPlaceable = true;
 	//waypoint needs to know it's own position -> calculate position on grid in waypoint script 
 
 	Vector2Int gridPos;
@@ -42,6 +43,8 @@ public class Waypoint : MonoBehaviour {
 	//		}
 	//	}
 	private void OnMouseOver() {
-		Debug.Log("Mouse over block: " + gameObject.name);
+		if (Input.GetMouseButtonDown(0) && isPlaceable == true ) {
+			Debug.Log("Clicked block: " + gameObject.name);
+			}
 		}
 	}
