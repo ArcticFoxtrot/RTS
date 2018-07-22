@@ -39,7 +39,7 @@ public class EditorCubeGridSnap: MonoBehaviour {
 
 	private void UpdateLabel() {
 		string cubeCoordinates = cubeWaypoint.GetGridPos().x + "," + cubeWaypoint.GetGridPos().y;
-		labelMesh.text = cubeCoordinates;
+		if (labelMesh) { labelMesh.text = cubeCoordinates; }
 		gameObject.name = "Cube " + cubeCoordinates;
 		}
 	}
