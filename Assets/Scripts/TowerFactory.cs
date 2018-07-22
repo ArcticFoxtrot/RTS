@@ -4,24 +4,45 @@ using UnityEngine;
 
 public class TowerFactory : MonoBehaviour {
 
-	[SerializeField] int towerLimit = 3;
+	[SerializeField] int towerLimit;
 	[SerializeField] Tower towerPrefab;
+	[SerializeField] Transform towerParent;
+
+	Queue<Tower> towerQueue = new Queue<Tower>();
+
+
+	
+
 	// Use this for initialization
 
 	public void AddTower(Waypoint baseWaypoint) {
-		if (FindObjectsOfType<Tower>().Length < towerLimit) {
+		print(towerQueue.Count);
+		if (towerQueue.Count < towerLimit) { //todo change to read from queue size
 			SpawnTower(baseWaypoint);
 			} else {
-			MoveTower();
+			MoveTower(baseWaypoint);
 			}
 		}
 
-	private static void MoveTower() {
-		Debug.Log("Reached limit, cannot place tower");
-		// todo: actually move
+	private void MoveTower(Waypoint newBaseWaypoint) {
+		var  oldTower = towerQueue.Dequeue();
+		// todo: set placeable bool to false for waypoint, true for old waypoint
+		oldTower.baseWaypoint.isPlaceable = true;
+		newBaseWaypoint.isPlaceable = false;
+		// todo: put  old tower on top of the queue
+		oldTower.baseWaypoint = newBaseWaypoint;
+		oldTower.transform.position = newBaseWaypoint.transform.position;
+		towerQueue.Enqueue(oldTower);
 		}
 
 	private void SpawnTower(Waypoint baseWaypoint) {
-		Instantiate(towerPrefab, baseWaypoint.transform.position, Quaternion.identity);
+		var newTower = Instantiate(towerPrefab, baseWaypoint.transform.position, Quaternion.identity);
+		newTower.transform.parent = towerParent;
+		baseWaypoint.isPlaceable = false;
+		newTower.baseWaypoint = baseWaypoint;
+		baseWaypoint.isPlaceable = false;
+		towerQueue.Enqueue(newTower);
+		// todo put new tower into queue
+		// set placeable bool to false
 		}
 	}

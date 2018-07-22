@@ -37,7 +37,10 @@ public class EnemyDamage : MonoBehaviour {
 
 	private void KillEnemy() {
 		ParticleSystem deathFX = Instantiate(deathParticleSystem, transform.position, Quaternion.identity);
+		deathFX.transform.parent = transform.parent;
 		deathFX.Play();
+		float destroyVFXDelay = deathFX.main.duration;
+		Destroy(deathFX.gameObject, destroyVFXDelay);
 		Destroy(gameObject);
 		}
 

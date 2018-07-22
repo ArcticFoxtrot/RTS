@@ -8,6 +8,8 @@ public class Tower : MonoBehaviour {
 	[SerializeField] Transform objectToPan;
 	[SerializeField] float firingDistance = 10f;
 
+	public Waypoint baseWaypoint; // what the tower is standing on
+
 	// State of towers
 	Transform targetEnemy;
 
@@ -15,6 +17,8 @@ public class Tower : MonoBehaviour {
 	private ParticleSystem weapon;
 	private float distToClosest;
 	private float distToTest;
+
+
 
 	// Use this for initialization
 	void Start () {

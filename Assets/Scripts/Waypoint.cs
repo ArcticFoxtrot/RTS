@@ -43,9 +43,11 @@ public class Waypoint : MonoBehaviour {
 	//		}
 	//	}
 	private void OnMouseOver() {
-		if (Input.GetMouseButtonDown(0) && isPlaceable == true ) {
-			FindObjectOfType<TowerFactory>().AddTower(this);
-			isPlaceable = false;
+		if (Input.GetMouseButtonDown(0) == true) {
+			if (isPlaceable == true) {
+				FindObjectOfType<TowerFactory>().AddTower(this);
+				isPlaceable = false;
+				}
 			}
 		}
 	}
