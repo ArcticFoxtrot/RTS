@@ -22,8 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 		while (true) {
 			enemy = Instantiate(enemyPrefab, gameObject.transform.position, Quaternion.identity);
 			enemy.transform.parent = enemyParent;
-			// spawn
-			//print("Spawning!");
+
 			yield return new WaitForSeconds(secondsBetweenSpawns);
 			}
 		}

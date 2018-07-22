@@ -17,7 +17,7 @@ public class TowerFactory : MonoBehaviour {
 
 	public void AddTower(Waypoint baseWaypoint) {
 		print(towerQueue.Count);
-		if (towerQueue.Count < towerLimit) { //todo change to read from queue size
+		if (towerQueue.Count < towerLimit) {
 			SpawnTower(baseWaypoint);
 			} else {
 			MoveTower(baseWaypoint);
@@ -26,10 +26,10 @@ public class TowerFactory : MonoBehaviour {
 
 	private void MoveTower(Waypoint newBaseWaypoint) {
 		var  oldTower = towerQueue.Dequeue();
-		// todo: set placeable bool to false for waypoint, true for old waypoint
+	
 		oldTower.baseWaypoint.isPlaceable = true;
 		newBaseWaypoint.isPlaceable = false;
-		// todo: put  old tower on top of the queue
+		
 		oldTower.baseWaypoint = newBaseWaypoint;
 		oldTower.transform.position = newBaseWaypoint.transform.position;
 		towerQueue.Enqueue(oldTower);
@@ -42,7 +42,6 @@ public class TowerFactory : MonoBehaviour {
 		newTower.baseWaypoint = baseWaypoint;
 		baseWaypoint.isPlaceable = false;
 		towerQueue.Enqueue(newTower);
-		// todo put new tower into queue
-		// set placeable bool to false
+
 		}
 	}
