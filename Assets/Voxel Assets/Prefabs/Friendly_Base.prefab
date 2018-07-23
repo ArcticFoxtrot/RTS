@@ -110,3 +110,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 10
   healthDecrease: 1
+  healthText: {fileID: 114627164386529152, guid: f7b53e8281273af4e89ff20c03c63559,
+    type: 2}

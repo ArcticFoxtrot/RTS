@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyDamage : MonoBehaviour {
 
@@ -9,17 +10,17 @@ public class EnemyDamage : MonoBehaviour {
 	[SerializeField] int hitPoints = 10;
 	[SerializeField] ParticleSystem hitParticleSystem;
 	[SerializeField] ParticleSystem deathParticleSystem;
-	
+
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+		}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+		}
 
 	private void OnParticleCollision(GameObject other) {
 		//print("I'm hit!");
