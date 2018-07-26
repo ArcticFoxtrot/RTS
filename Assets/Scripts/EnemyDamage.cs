@@ -10,6 +10,8 @@ public class EnemyDamage : MonoBehaviour {
 	[SerializeField] int hitPoints = 10;
 	[SerializeField] ParticleSystem hitParticleSystem;
 	[SerializeField] ParticleSystem deathParticleSystem;
+	[SerializeField] AudioClip damageSFX;
+	[SerializeField] AudioClip deathSFX;
 
 
 	// Use this for initialization
@@ -34,14 +36,20 @@ public class EnemyDamage : MonoBehaviour {
 	private void ProcessHit() {
 		hitPoints = hitPoints - 1;
 		hitParticleSystem.Play();
+		GetComponent<AudioSource>().PlayOneShot(damageSFX);
 		}
 
 	private void KillEnemy() {
 		ParticleSystem deathFX = Instantiate(deathParticleSystem, transform.position, Quaternion.identity);
 		deathFX.Play();
 		float destroyVFXDelay = deathFX.main.duration;
+		float destroySFXDelay = deathSFX.length;
 		Destroy(deathFX.gameObject, destroyVFXDelay);
-		Destroy(gameObject);
+		AudioSource.PlayClipAtPoint(deathSFX, FindObjectOfType<AudioListener>().transform.position);
+		//GetComponentInChildren<Collider>().enabled = false;
+		//GetComponentInChildren<MeshRenderer>().enabled = false;
+		//GetComponent<AudioSource>().PlayOneShot(deathSFX);
+		Destroy(gameObject,destroySFXDelay);
 		}
 
 	}
